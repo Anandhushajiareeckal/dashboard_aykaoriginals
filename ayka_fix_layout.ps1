@@ -1,3 +1,28 @@
+# ============================================================
+#  AYKA ORIGINALS - Fix Broken Web Layout
+#  Run: powershell -ExecutionPolicy Bypass -File ayka_fix_layout.ps1
+# ============================================================
+
+$ProjectPath = "C:\laragon\www\ayka-originals"
+Set-Location $ProjectPath
+
+$phpExe = (Get-Command php -ErrorAction SilentlyContinue).Source
+if (-not $phpExe) { $phpExe = "php" }
+
+Write-Host ""
+Write-Host "======================================================" -ForegroundColor Cyan
+Write-Host "  AYKA ORIGINALS - Fixing Web Layout" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
+Write-Host ""
+
+function Write-File($Path, $Content) {
+    $Dir = Split-Path $Path -Parent
+    if (!(Test-Path $Dir)) { New-Item -ItemType Directory -Path $Dir -Force | Out-Null }
+    [System.IO.File]::WriteAllText($Path, $Content, [System.Text.UTF8Encoding]::new($false))
+    Write-Host "  [OK] $Path" -ForegroundColor Green
+}
+
+$layout = @'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,3 +196,19 @@ document.addEventListener('keydown', function(e) {
 </script>
 </body>
 </html>
+'@
+
+Write-File "$ProjectPath\resources\views\layouts\app.blade.php" $layout
+
+Write-Host ""
+Write-Host "Clearing view cache..." -ForegroundColor Yellow
+& $phpExe artisan view:clear
+& $phpExe artisan cache:clear
+
+Write-Host ""
+Write-Host "======================================================" -ForegroundColor Green
+Write-Host "  DONE! Web layout is fixed." -ForegroundColor Green
+Write-Host "======================================================" -ForegroundColor Green
+Write-Host ""
+Write-Host "  Hard refresh: Ctrl + Shift + R" -ForegroundColor Yellow
+Write-Host ""
