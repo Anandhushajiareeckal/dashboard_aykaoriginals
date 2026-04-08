@@ -8,6 +8,7 @@
     <h2 class="font-display text-xl font-bold">{{ $model->name }}</h2>
     <span class="text-xs px-2.5 py-1 rounded-full font-medium {{ $model->status === 'Active' ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500' }}">{{ $model->status }}</span>
     <div class="ml-auto flex gap-2">
+        <a href="{{ route('models.compcard.builder', $model) }}" class="px-4 py-2 bg-[#C9A96E] text-[#0B132B] text-sm font-bold rounded-lg hover:bg-[#E8C882] transition-colors">&#9646; Comp Card</a>
         <a href="{{ route('models.edit', $model) }}" class="px-4 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 transition-colors">Edit</a>
         <form method="POST" action="{{ route('models.destroy', $model) }}" onsubmit="return confirm('Archive this model?')">
             @csrf @method('DELETE')
@@ -134,7 +135,7 @@
                 @foreach($model->getMedia('portfolio') as $media)
                 <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
                      onclick="openLightbox('{{ $media->getUrl() }}')">
-                    <img src="{{ $media->getUrl('thumb') ?: $media->getUrl() }}" class="w-full h-full object-cover"
+                    <img src="{{ $media->getAvailableUrl(['thumb']) }}" class="w-full h-full object-cover"
                          onerror="this.src='{{ $media->getUrl() }}'">
                 </div>
                 @endforeach
