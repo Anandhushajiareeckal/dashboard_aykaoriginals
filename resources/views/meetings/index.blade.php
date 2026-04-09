@@ -10,10 +10,10 @@
     <a href="{{ route('meetings.create') }}" class="bg-[#C9A96E] text-[#0B132B] font-semibold text-sm px-4 py-2 rounded-lg hover:bg-[#E8C882] transition-colors">+ Schedule Meeting</a>
 </div>
 
-<div class="grid grid-cols-5 gap-5">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-5">
 
     {{-- Calendar --}}
-    <div class="col-span-2 bg-white border border-gray-100 rounded-xl p-5">
+    <div class="md:col-span-2 bg-white border border-gray-100 rounded-xl p-5">
         <div class="flex items-center justify-between mb-4">
             <h3 class="font-display font-semibold text-sm">{{ now()->format('F Y') }}</h3>
         </div>
@@ -58,7 +58,7 @@
     </div>
 
     {{-- Meetings list --}}
-    <div class="col-span-3 space-y-3">
+    <div class="md:col-span-3 space-y-3">
         <h3 class="font-display font-semibold text-sm text-gray-500 uppercase tracking-wide">Upcoming</h3>
         @forelse($upcoming as $mtg)
         <div class="bg-white border border-gray-100 rounded-xl p-4 hover:border-[#C9A96E]/30 transition-colors">

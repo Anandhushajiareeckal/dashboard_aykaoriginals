@@ -7,7 +7,7 @@
         <p class="text-sm text-gray-400">Full audit trail with IP address and device tracking</p>
     </div>
 </div>
-<div class="grid grid-cols-4 gap-4 mb-6">
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
     <div class="bg-white border border-gray-100 rounded-xl p-4 text-center">
         <p class="font-display text-2xl font-bold">{{ number_format($totalCount) }}</p>
         <p class="text-xs text-gray-400 uppercase tracking-wide mt-1">Total Events</p>
@@ -26,7 +26,7 @@
     </div>
 </div>
 <form method="GET" class="bg-white border border-gray-100 rounded-xl p-4 mb-5">
-    <div class="grid grid-cols-6 gap-3 mb-3">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-3">
         <div>
             <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">User</label>
             <select name="user_id" class="w-full border border-gray-200 rounded-lg px-2.5 py-2 text-sm outline-none focus:border-[#0B132B]">
@@ -77,8 +77,8 @@
         <a href="{{ route('activity-log.index') }}" class="text-sm text-gray-400 hover:text-gray-700 py-2 px-2">Clear</a>
     </div>
 </form>
-<div class="bg-white border border-gray-100 rounded-xl overflow-hidden">
-    <table class="w-full text-sm">
+<div class="bg-white border border-gray-100 rounded-xl overflow-hidden overflow-x-auto">
+    <table class="w-full text-sm min-w-[700px]">
         <thead class="border-b border-gray-100 bg-gray-50">
             <tr>
                 <th class="text-left px-4 py-3 text-xs text-gray-400 font-medium uppercase tracking-wide">Time</th>

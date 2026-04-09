@@ -11,7 +11,7 @@
 </div>
 
 {{-- KPI Cards --}}
-<div class="grid grid-cols-3 gap-4 mb-6">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
     <div class="bg-white border border-gray-100 rounded-xl p-5">
         <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Total Invoiced</p>
         <p class="font-display text-2xl font-bold">AED {{ number_format($summary['total']) }}</p>
@@ -27,7 +27,7 @@
 </div>
 
 {{-- Filter --}}
-<form method="GET" class="bg-white border border-gray-100 rounded-xl p-4 mb-5 flex gap-3 items-end">
+<form method="GET" class="bg-white border border-gray-100 rounded-xl p-4 mb-5 flex flex-wrap gap-3 items-end">
     <div>
         <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Status</label>
         <select name="status" class="border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B]">
@@ -42,8 +42,8 @@
 </form>
 
 {{-- Table --}}
-<div class="bg-white border border-gray-100 rounded-xl overflow-hidden">
-    <table class="w-full text-sm">
+<div class="bg-white border border-gray-100 rounded-xl overflow-x-auto">
+    <table class="w-full text-sm min-w-[680px]">
         <thead class="border-b border-gray-100">
             <tr>
                 <th class="text-left px-5 py-3 text-xs text-gray-400 font-medium uppercase tracking-wide">Invoice</th>

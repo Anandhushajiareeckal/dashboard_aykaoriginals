@@ -39,19 +39,19 @@
         $statusColor = ['Active'=>'bg-green-50 text-green-700','Planning'=>'bg-amber-50 text-amber-700','Review'=>'bg-blue-50 text-blue-700','Completed'=>'bg-gray-100 text-gray-600','Cancelled'=>'bg-red-50 text-red-600'][$project->status] ?? 'bg-gray-100 text-gray-600';
     @endphp
     <div class="bg-white border border-gray-100 rounded-xl p-5 hover:translate-x-1 transition-transform">
-        <div class="flex items-start justify-between mb-3">
-            <div>
+        <div class="flex flex-wrap items-start gap-2 mb-3">
+            <div class="flex-1 min-w-0">
                 <a href="{{ route('projects.show', $project) }}" class="font-display font-semibold hover:text-[#C9A96E] transition-colors">{{ $project->title }}</a>
-                <p class="text-sm text-gray-400 mt-0.5">
+                <p class="text-sm text-gray-400 mt-0.5 truncate">
                     {{ $project->brand?->name }}
                     @if($project->category) · {{ $project->category }}@endif
                     @if($project->start_date) · {{ $project->start_date->format('d M') }} – {{ $project->end_date?->format('d M Y') }}@endif
                 </p>
             </div>
-            <div class="flex items-center gap-3">
-                <span class="font-display font-semibold text-sm">AED {{ number_format($project->budget) }}</span>
-                <span class="text-xs px-2.5 py-1 rounded-full font-medium {{ $statusColor }}">{{ $project->status }}</span>
-                <a href="{{ route('projects.edit', $project) }}" class="text-xs border border-gray-200 px-2.5 py-1 rounded-lg hover:bg-gray-50">Edit</a>
+            <div class="flex flex-wrap items-center gap-2 flex-shrink-0">
+                <span class="font-display font-semibold text-sm whitespace-nowrap">AED {{ number_format($project->budget) }}</span>
+                <span class="text-xs px-2.5 py-1 rounded-full font-medium {{ $statusColor }} whitespace-nowrap">{{ $project->status }}</span>
+                <a href="{{ route('projects.edit', $project) }}" class="text-xs border border-gray-200 px-2.5 py-1 rounded-lg hover:bg-gray-50 whitespace-nowrap">Edit</a>
             </div>
         </div>
         <div class="flex items-center gap-3">

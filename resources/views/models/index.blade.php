@@ -11,7 +11,7 @@
 </div>
 
 <form method="GET" class="bg-white border border-gray-100 rounded-xl p-4 mb-6">
-    <div class="grid grid-cols-4 gap-3 mb-3">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-3">
         <div>
             <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Name</label>
             <input name="name" value="{{ request('name') }}" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B]" placeholder="Search name...">
@@ -39,7 +39,7 @@
             </select>
         </div>
     </div>
-    <div class="grid grid-cols-4 gap-3 items-end">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 items-end">
         <div>
             <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Height Min (cm)</label>
             <input name="height_min" type="number" value="{{ request('height_min') }}" min="140" max="200"

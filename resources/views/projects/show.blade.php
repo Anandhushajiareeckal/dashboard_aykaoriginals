@@ -2,20 +2,20 @@
 @section('title', $project->title)
 @section('content')
 
-<div class="flex items-center gap-3 mb-6">
-    <a href="{{ route('projects.index') }}" class="text-gray-400 hover:text-gray-600">← Back</a>
-    <h2 class="font-display text-xl font-bold">{{ $project->title }}</h2>
+<div class="flex flex-wrap items-center gap-3 mb-6">
+    <a href="{{ route('projects.index') }}" class="text-gray-400 hover:text-gray-600 flex-shrink-0">← Back</a>
+    <h2 class="font-display text-xl font-bold min-w-0">{{ $project->title }}</h2>
     @php $statusColor = ['Active'=>'bg-green-50 text-green-700','Planning'=>'bg-amber-50 text-amber-700','Review'=>'bg-blue-50 text-blue-700','Completed'=>'bg-gray-100 text-gray-600','Cancelled'=>'bg-red-50 text-red-600'][$project->status] ?? 'bg-gray-100 text-gray-600'; @endphp
-    <span class="text-xs px-2.5 py-1 rounded-full font-medium {{ $statusColor }}">{{ $project->status }}</span>
-    <div class="ml-auto flex gap-2">
+    <span class="text-xs px-2.5 py-1 rounded-full font-medium {{ $statusColor }} flex-shrink-0">{{ $project->status }}</span>
+    <div class="ml-auto flex gap-2 flex-shrink-0">
         <a href="{{ route('projects.edit', $project) }}" class="px-4 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50">Edit</a>
     </div>
 </div>
 
-<div class="grid grid-cols-3 gap-5">
-    <div class="col-span-2 space-y-4">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <div class="lg:col-span-2 space-y-4">
         <div class="bg-white border border-gray-100 rounded-xl p-5">
-            <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                 <div class="bg-gray-50 rounded-lg p-3 text-center">
                     <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">Budget</p>
                     <p class="font-display font-bold">AED {{ number_format($project->budget) }}</p>
