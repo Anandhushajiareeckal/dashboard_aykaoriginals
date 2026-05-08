@@ -9,13 +9,18 @@ class InvoiceController extends Controller {
     public function index(Request $req) {
         $q = Invoice::with('brand', 'project');
         if ($req->status) $q->where('status', $req->status);
+        if ($req->inv) $q->where('invoice_number', 'like', '%' . $req->inv . '%');
+        if ($req->brand_id) $q->where('brand_id', $req->brand_id);
+        if ($req->from_date) $q->whereDate('created_at', '>=', $req->from_date);
+        if ($req->to_date) $q->whereDate('created_at', '<=', $req->to_date);
         $invoices = $q->latest()->paginate(20)->withQueryString();
         $summary = [
             'total'   => Invoice::sum('total'),
             'paid'    => Invoice::where('status', 'Paid')->sum('total'),
             'pending' => Invoice::whereIn('status', ['Sent', 'Overdue'])->sum('total'),
         ];
-        return view('invoices.index', compact('invoices', 'summary'));
+        $brands = Brand::orderBy('name')->get();
+        return view('invoices.index', compact('invoices', 'summary', 'brands'));
     }
     public function create() {
         return view('invoices.create', [

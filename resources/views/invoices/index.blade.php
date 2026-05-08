@@ -29,6 +29,27 @@
 {{-- Filter --}}
 <form method="GET" class="bg-white border border-gray-100 rounded-xl p-4 mb-5 flex flex-wrap gap-3 items-end">
     <div>
+        <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Invoice #</label>
+        <input type="text" name="inv" value="{{ request('inv') }}" placeholder="INV-..." class="border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B] w-32">
+    </div>
+    <div>
+        <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Customer</label>
+        <select name="brand_id" class="border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B] w-40">
+            <option value="">All Customers</option>
+            @foreach($brands as $b)
+                <option value="{{ $b->id }}" {{ request('brand_id') == $b->id ? 'selected' : '' }}>{{ $b->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div>
+        <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Date From</label>
+        <input type="date" name="from_date" value="{{ request('from_date') }}" class="border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B]">
+    </div>
+    <div>
+        <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Date To</label>
+        <input type="date" name="to_date" value="{{ request('to_date') }}" class="border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B]">
+    </div>
+    <div>
         <label class="block text-xs text-gray-400 uppercase tracking-wide mb-1">Status</label>
         <select name="status" class="border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#0B132B]">
             <option value="">All</option>
